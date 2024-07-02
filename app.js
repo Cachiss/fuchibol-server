@@ -10,13 +10,13 @@ const port = process.env.PORT || 3000;
 connectDB();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "https://fuchibol-client.netlify.app",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: "GET, POST, PUT, DELETE",
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => res.send("Hello World!"));
-app.use("/api/teams/", teamsRouter);
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.use("/api/teams", teamsRouter);
 export default app;
