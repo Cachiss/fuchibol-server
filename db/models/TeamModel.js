@@ -14,7 +14,13 @@ const TeamSchema = new mongoose.Schema({
     members: {
         type: [String],
         required: true,
-    }
+    },
+    category: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
 });
 
 export const TeamModel = mongoose.model('Team', TeamSchema);
